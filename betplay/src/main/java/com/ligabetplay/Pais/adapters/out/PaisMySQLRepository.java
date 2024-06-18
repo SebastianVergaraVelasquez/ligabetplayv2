@@ -21,7 +21,7 @@ public class PaisMySQLRepository implements PaisRepository {
     @Override
     public void save(Pais pais) {
         try (Connection connection = DriverManager.getConnection(url, user, password)) {
-            String query = "INSERT INTO paises (nombre) VALUES (?)";
+            String query = "INSERT INTO pais (nombre) VALUES (?)";
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 statement.setString(1, pais.getNombre());
                 statement.executeUpdate();
@@ -34,7 +34,7 @@ public class PaisMySQLRepository implements PaisRepository {
     @Override
     public void update(Pais pais) {
         try (Connection connection = DriverManager.getConnection(url, user, password)) {
-            String query = "UPDATE paises SET nombre = ? WHERE id = ?";
+            String query = "UPDATE pais SET nombre = ? WHERE id = ?";
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 statement.setString(1, pais.getNombre());
                 statement.setInt(2, pais.getId());
@@ -48,7 +48,7 @@ public class PaisMySQLRepository implements PaisRepository {
     @Override
     public Optional<Pais> findById(int id) {
         try (Connection connection = DriverManager.getConnection(url, user, password)) {
-            String query = "SELECT * FROM paises WHERE id = ?";
+            String query = "SELECT * FROM pais WHERE id = ?";
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 statement.setInt(1, id);
                 try (ResultSet resultSet = statement.executeQuery()) {
@@ -70,7 +70,7 @@ public class PaisMySQLRepository implements PaisRepository {
     @Override
     public void delete(int id) {
         try (Connection connection = DriverManager.getConnection(url, user, password)) {
-            String query = "DELETE FROM paises WHERE id = ?";
+            String query = "DELETE FROM pais WHERE id = ?";
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 statement.setInt(1, id);
                 statement.executeUpdate();
@@ -84,7 +84,7 @@ public class PaisMySQLRepository implements PaisRepository {
     public List<Pais> findAll() {
         List<Pais> paises = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection(url, user, password)) {
-            String query = "SELECT * FROM paises";
+            String query = "SELECT * FROM pais";
             try (PreparedStatement statement = connection.prepareStatement(query);
                  ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {

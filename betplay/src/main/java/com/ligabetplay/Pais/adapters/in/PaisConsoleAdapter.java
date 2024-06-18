@@ -4,7 +4,9 @@ import java.util.Scanner;
 
 import com.ligabetplay.Pais.application.PaisService;
 import com.ligabetplay.Pais.domain.models.Pais;
+
 public class PaisConsoleAdapter {
+
     private final PaisService paisService;
 
     public PaisConsoleAdapter(PaisService paisService) {
@@ -12,9 +14,10 @@ public class PaisConsoleAdapter {
     }
 
     public void start() {
+        boolean executing = true;
         Scanner scanner = new Scanner(System.in);
 
-        while (true) {
+        while (executing) {
             System.out.println("1. Crear Pais");
             System.out.println("2. Actualizar Pais");
             System.out.println("3. Buscar Pais por ID");
@@ -70,13 +73,13 @@ public class PaisConsoleAdapter {
                     break;
 
                 case 6:
-                    scanner.close();
-                    System.exit(0);
+                    executing = false;
                     break;
 
                 default:
                     System.out.println("Opcion invalida, intentelo de nuevo.");
             }
         }
+        scanner.close();
     }
 }
