@@ -6,8 +6,8 @@ import java.util.Optional;
 
 public interface PaisRepository {
     void save(Pais pais);
-    void update(Pais pais);
+    boolean update(Pais pais);
     Optional<Pais> findById(int id);
-    void delete(int id);
+    boolean delete(int id);
     List<Pais> findAll();
 }

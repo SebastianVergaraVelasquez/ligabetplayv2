@@ -17,16 +17,16 @@ public class PaisService {
         paisRepository.save(pais);
     }
 
-    public void updatePais(Pais pais) {
-        paisRepository.update(pais);
+    public boolean updatePais(Pais pais) {
+        return paisRepository.update(pais);
     }
 
     public Optional<Pais> getPaisById(int id) {
         return paisRepository.findById(id);
     }
 
-    public void deletePais(int id) {
-        paisRepository.delete(id);
+    public boolean deletePais(int id) {
+        return paisRepository.delete(id);
     }
 
     public List<Pais> getAllPaises() {

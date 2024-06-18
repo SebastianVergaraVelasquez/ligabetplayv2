@@ -32,7 +32,8 @@ public class PaisMySQLRepository implements PaisRepository {
     }
 
     @Override
-    public void update(Pais pais) {
+    public boolean update(Pais pais) {
+        boolean updated = false;
         try (Connection connection = DriverManager.getConnection(url, user, password)) {
             String query = "UPDATE pais SET nombre = ? WHERE id = ?";
             try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -42,7 +43,10 @@ public class PaisMySQLRepository implements PaisRepository {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            return updated;
         }
+        updated = true;
+        return updated;
     }
 
     @Override
@@ -68,7 +72,8 @@ public class PaisMySQLRepository implements PaisRepository {
     }
 
     @Override
-    public void delete(int id) {
+    public boolean delete(int id) {
+        boolean deleted = false;
         try (Connection connection = DriverManager.getConnection(url, user, password)) {
             String query = "DELETE FROM pais WHERE id = ?";
             try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -77,7 +82,10 @@ public class PaisMySQLRepository implements PaisRepository {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            return deleted;
         }
+        deleted = true;
+        return deleted;
     }
 
     @Override
