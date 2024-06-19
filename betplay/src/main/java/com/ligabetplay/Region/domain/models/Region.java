@@ -4,12 +4,16 @@ public class Region {
     private int id;
     private String nombre;
 
-    Region(){
+    public Region(){
 
     }
 
-    Region(int id, String nombre){
+    public Region(int id, String nombre){
         this.id = id;
+        this.nombre = nombre;
+    }
+
+    public Region(String nombre) {
         this.nombre = nombre;
     }
 
